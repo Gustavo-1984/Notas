@@ -1,5 +1,8 @@
 const express = require('express')
 const router = express.Router()
+const { client } = require('../config/mqtt')
+
+
 
 // Importando el modelo Consumos
 const CambioPrecio = require('../models/CambioPrecio')
@@ -15,11 +18,18 @@ router.post('/cambio-precio', auth, async(req, res) => {
     try {
         const cambioDb = await CambioPrecio.create(body)
         res.status(200).json(cambioDb)
+
     } catch (error) {
         return res.status(500).json({
             mensaje: 'Ocurrio un error'
         })
     }
+    client.subscribe('+/#', function(err) {
+        console.log("Subscripción exitosa!")
+        let precio = body.precio
+        client.publish("2" + "/registrar", precio)
+    });
+
 })
 
 

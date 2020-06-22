@@ -4,6 +4,7 @@ const cors = require('cors')
 const path = require('path')
 const db = require('./config/db')
 
+require('./config/mqtt')
 
 
 db.sync()

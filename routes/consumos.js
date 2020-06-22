@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const con = require('../config/mysql')
 
 // Importando el modelo Consumos
 const Consumos = require('../models/Consumos')
@@ -44,9 +45,11 @@ router.get('/consumos', auth, async(req, res) => {
     const usuarioId = req.usuario.id
 
     try {
-        const consumoDb = await Consumos.findAll({ where: { usuarioId } })
-        res.json(consumoDb)
-
+        const consumoDb = await "SELECT * FROM vista_consumos WHERE usuarioId = '" + usuarioId + "'"
+        con.query(consumoDb, (err, result, fields) => {
+            //const consumoDb = await Consumos.findAll({ where: { usuarioId }})
+            res.send(result)
+        })
     } catch (error) {
         return res.status(400).json({
             mensaje: 'Ocurrio un error'
