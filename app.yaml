@@ -1,2 +1,7 @@
-runtime: nodejs
+application: dispensario
+runtime: nodejs10
 env: flex
+
+url: /.*
+upload: index.html
+static_files: index.html
