@@ -16,7 +16,9 @@ app.use(morgan('tiny'))
 app.use(cors())
 app.use(express.json())
 
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({
+    extended: true
+}))
 
 app.use('/api', require('./routes/consumos'))
 app.use('/api', require('./routes/usuario'))
@@ -29,4 +31,4 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 //app.use(bodyParser.urlencoded({ extended: true }))
 
-app.listen(8080)
+app.listen(3000)
