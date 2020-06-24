@@ -1,3 +1,2 @@
-application: dispensario
 runtime: nodejs
 env: flex
