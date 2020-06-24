@@ -20,6 +20,8 @@ app.use(express.urlencoded({
     extended: true
 }))
 
+const port = 4000
+
 app.use('/api', require('./routes/consumos'))
 app.use('/api', require('./routes/usuario'))
 app.use('/api', require('./routes/login'))
@@ -31,4 +33,4 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 //app.use(bodyParser.urlencoded({ extended: true }))
 
-app.listen(3000)
+app.listen(port, '0.0.0.0')
