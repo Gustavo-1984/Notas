@@ -13,3 +13,12 @@ const con = mysql.createConnection({
 
 
 module.exports = con;
+
+setInterval(function() {
+    var query = 'SELECT 1 + 1 as result';
+
+    con.query(query, function(err, result, fields) {
+        if (err) throw err;
+    });
+
+}, 5000);
