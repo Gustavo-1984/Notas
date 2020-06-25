@@ -3,6 +3,9 @@ const morgan = require('morgan')
 const cors = require('cors')
 const path = require('path')
 const db = require('./config/db')
+require('dotenv').config({
+    path: 'variables.env'
+})
 
 require('./config/mqtt')
 
@@ -20,7 +23,7 @@ app.use(express.urlencoded({
     extended: true
 }))
 
-const port = 4000
+
 
 app.use('/api', require('./routes/consumos'))
 app.use('/api', require('./routes/usuario'))
@@ -33,4 +36,9 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 //app.use(bodyParser.urlencoded({ extended: true }))
 
-app.listen(port, '0.0.0.0')
+const host = process.env.HOST || '0.0.0.0'
+const port = process.env.PORT || 4000
+
+app.listen(port, host, () => {
+    console.log('Online');
+})
