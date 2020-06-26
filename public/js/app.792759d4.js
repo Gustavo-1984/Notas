@@ -2799,7 +2799,7 @@
                 iconfont: "md"
             }
         });
-        n["a"].config.productionTip = !1, G.a.defaults.baseURL = "https://arcafleets.herokuapp.com/api/", new n["a"]({
+        n["a"].config.productionTip = !1, G.a.defaults.baseURL = "https://arcafleets.com/api/", new n["a"]({
             router: vt,
             store: A,
             vuetify: pt,
